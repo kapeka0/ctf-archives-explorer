@@ -1,91 +1,85 @@
-/* eslint-disable import/no-anonymous-default-export */
-import { FlatCompat } from "@eslint/eslintrc";
-import js from "@eslint/js";
-import typescriptEslintEslintPlugin from "@typescript-eslint/eslint-plugin";
-import tsParser from "@typescript-eslint/parser";
-import prettier from "eslint-plugin-prettier";
-import path from "node:path";
+import { dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import tsParser from "@typescript-eslint/parser";
+import nextConfig from "eslint-config-next/core-web-vitals";
+import prettierFlat from "eslint-config-prettier/flat";
+import reactPlugin from "eslint-plugin-react";
+import reactHooksPlugin from "eslint-plugin-react-hooks";
+import { defineConfig, globalIgnores } from "eslint/config";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all,
-});
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
-export default [
+export default defineConfig([
+  // Global ignores
+  globalIgnores(["node_modules/", ".next/", "dist/", "public/", "next-env.d.ts"]),
+
+  // Next.js Core Web Vitals (includes jsx-a11y)
+  ...nextConfig,
+
+  // TypeScript rules
   {
-    ignores: ["**/dev/*", "**/dist/*", "**/components/ui/*", "tsconfig.json"],
-  },
-  ...compat.extends("next", "next/core-web-vitals", "prettier"),
-  {
-    plugins: {
-      prettier,
+    files: ["**/*.{ts,tsx}"],
+    ignores: ["**/*.d.ts"],
+    languageOptions: {
+      parser: tsParser,
+      parserOptions: {
+        project: true,
+        tsconfigRootDir: __dirname,
+        warnOnUnsupportedTypeScriptVersion: true,
+      },
     },
+    rules: {
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/explicit-function-return-type": "off",
+    },
+  },
 
+  // React + hooks
+  {
+    files: ["**/*.{js,jsx,ts,tsx}"],
+    plugins: {
+      react: reactPlugin,
+      "react-hooks": reactHooksPlugin,
+    },
+    rules: {
+      ...reactPlugin.configs.recommended.rules,
+      ...reactHooksPlugin.configs["recommended"].rules,
+      "react/react-in-jsx-scope": "off",
+      // Disable overly strict rules that flag common patterns
+      "react-hooks/purity": "off",
+      "react-hooks/set-state-in-effect": "off",
+    },
+  },
+  {
+    files: ["**/*.{js,jsx,ts,tsx}"],
+    rules: {
+      "no-restricted-syntax": [
+        "error",
+        {
+          selector: "JSXOpeningElement[name.name='a']",
+          message: "Do not use <a>. Use Next.js <Link> instead.",
+        },
+      ],
+    },
+  },
+  // Import restrictions (exclude files that need direct imports)
+  {
+    files: ["**/*.{js,jsx,ts,tsx}"],
+    ignores: ["components/ui/**", "i18n/**"],
     rules: {
       "no-restricted-imports": [
         "error",
         {
           patterns: [
-            {
-              group: ["@radix-ui/*", "!@radix-ui/react-icons"],
-
-              message: "Import from '@/components/ui' instead.",
-            },
-            {
-              group: ["next/link"],
-              message: "Import from '@/i18n/routing' instead.",
-            },
-            {
-              group: ["next/navigation"],
-              message: "Import from '@/i18n/routing' instead.",
-            },
+            { group: ["@radix-ui/*", "!@radix-ui/react-icons"], message: "Import from '@/components/ui' instead." },
+            { group: ["next/link"], message: "Import from '@/i18n/routing' instead." },
+            { group: ["next/navigation"], message: "Import from '@/i18n/routing' instead." },
           ],
         },
       ],
+    },
+  },
 
-      "prettier/prettier": "error",
-      camelcase: "off",
-      "import/prefer-default-export": "off",
-      "react/jsx-filename-extension": "off",
-      "react/jsx-props-no-spreading": "off",
-      "react/no-unused-prop-types": "off",
-      "react/require-default-props": "off",
-      "react/no-unescaped-entities": "off",
-      "import/extensions": [
-        "error",
-        "ignorePackages",
-        {
-          ts: "never",
-          tsx: "never",
-          js: "never",
-          jsx: "never",
-        },
-      ],
-    },
-  },
-  ...compat.extends("plugin:@typescript-eslint/recommended", "prettier").map((config) => ({
-    ...config,
-    files: ["**/*.+(ts|tsx)"],
-  })),
-  {
-    files: ["**/*.+(ts|tsx)"],
-    plugins: {
-      "@typescript-eslint": typescriptEslintEslintPlugin,
-    },
-    languageOptions: {
-      parser: tsParser,
-    },
-    rules: {
-      "@typescript-eslint/explicit-function-return-type": "off",
-      "@typescript-eslint/explicit-module-boundary-types": "off",
-      "no-use-before-define": [0],
-      "@typescript-eslint/no-use-before-define": [1],
-      "@typescript-eslint/no-explicit-any": "off",
-      "@typescript-eslint/no-var-requires": "off",
-    },
-  },
-];
+  // Prettier at the end to override formatting rules
+  prettierFlat,
+]);
