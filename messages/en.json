@@ -1,6 +1,6 @@
 {
   "Auth": {
-    "welcome": "Welcome to Appname",
+    "welcome": "Welcome to Kapeka",
     "welcomeMessage": "Sign in to continue to your account",
     "signIn": "Sign in",
     "email": "Email",
@@ -10,7 +10,7 @@
     "noAccount": "Don't have an account?",
     "signUp": "Sign up",
     "loginError": "Invalid email or password",
-    "join": "Join Appname",
+    "join": "Join Kapeka",
     "joinMessage": "Start your journey today",
     "strongPassword": "Choose a strong password",
     "confirmPassword": "Confirm your password",
@@ -51,7 +51,7 @@
     }
   },
   "Global": {
-    "title": "App Name",
+    "title": "Kapeka",
 
     "theme": "Theme",
     "light": "Light",
@@ -63,11 +63,11 @@
   },
   "LandingPage": {
     "title": "Start building 🚀",
-    "description": "My Next.js template designed to develop SaaS, AI tools or other web applications quickly and effectively, ready to help you monetize from day one.",
-    "button": "Click me"
+    "description": "Kapeka Starter Kit — build SaaS, AI tools or web apps quickly without repeating boilerplate code.",
+    "button": "Get started"
   },
   "Metadata": {
-    "title": "App Name",
-    "description": "App Description"
+    "title": "Kapeka",
+    "description": "Build SaaS fast with Kapeka Starter Kit"
   }
 }

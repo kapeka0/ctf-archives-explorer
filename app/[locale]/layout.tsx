@@ -1,4 +1,4 @@
-import { Bricolage_Grotesque } from "next/font/google";
+import { DM_Sans } from "next/font/google";
 
 // @ts-ignore - allow global CSS side-effect import in Next.js app directory
 import "../globals.css";
@@ -8,6 +8,7 @@ import { redirect } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 
+import { ConvexClientProvider } from "@/components/providers/ConvexClientProvider";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { Toaster } from "@/components/ui/toaster";
 import { i18nConfig } from "@/i18n/i18nConfig";
@@ -24,9 +25,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
-const bricolageGrotesque = Bricolage_Grotesque({
+const dmSans = DM_Sans({
   subsets: ["latin"],
-  variable: "--font-bricolage-grotesque",
+  variable: "--font-dm-sans",
 });
 
 export function generateStaticParams() {
@@ -52,26 +53,19 @@ export default async function RootLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <head>
-        {/* icon */}
         <link rel="icon" href="/images/logos/logo.svg" type="image/svg+xml" sizes="any" />
-        {/* TODO: Remove this for production */}
-        <script src="https://unpkg.com/react-scan/dist/auto.global.js" async></script>
       </head>
-      <body className={cn(`${bricolageGrotesque.className}   h-full antialiased `)}>
-        {" "}
-        <NextIntlClientProvider messages={messages}>
-          <div className="">
+      <body className={cn(dmSans.className, "h-full antialiased")}>
+        <ConvexClientProvider>
+          <NextIntlClientProvider messages={messages}>
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-              <main className="relative flex flex-col min-h-screen">
-                {/* Providers */}
-                {/* Navbar */}
+              <main className="relative flex min-h-screen flex-col">
                 <div className="grow flex-1">{children}</div>
-                {/* Footer */}
               </main>
               <Toaster />
             </ThemeProvider>
-          </div>
-        </NextIntlClientProvider>
+          </NextIntlClientProvider>
+        </ConvexClientProvider>
       </body>
     </html>
   );

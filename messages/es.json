@@ -1,6 +1,6 @@
 {
   "Auth": {
-    "welcome": "Bienvenido a Appname",
+    "welcome": "Bienvenido a Kapeka",
     "welcomeMessage": "Inicia sesión para continuar a tu cuenta",
     "signIn": "Iniciar sesión",
     "email": "Correo electrónico",
@@ -10,7 +10,7 @@
     "noAccount": "¿No tienes una cuenta?",
     "signUp": "Regístrate",
     "loginError": "Correo electrónico o contraseña inválidos",
-    "join": "Únete a Appname",
+    "join": "Únete a Kapeka",
     "joinMessage": "Comienza hoy mismo tu viaje",
     "strongPassword": "Selecciona una contraseña segura",
     "confirmPassword": "Confirma tu contraseña",
@@ -51,7 +51,7 @@
     }
   },
   "Global": {
-    "title": "Nombre de la App",
+    "title": "Kapeka",
     "theme": "Tema",
     "light": "Claro",
     "dark": "Oscuro",
@@ -62,12 +62,12 @@
   },
   "LandingPage": {
     "title": "Empieza a construir 🚀",
-    "description": "Mi plantilla de Next.js diseñada para desarrollar SaaS, herramientas de IA u otras aplicaciones web de forma rápida y efectiva, lista para ayudarte a monetizar desde el primer día.",
-    "button": "Haz click aquí"
+    "description": "Kapeka Starter Kit — crea SaaS, herramientas de IA o apps web sin repetir boilerplate.",
+    "button": "Comenzar"
   },
   "Metadata": {
-    "title": "Nombre de la App",
-    "description": "Descripción de la App"
+    "title": "Kapeka",
+    "description": "Crea SaaS rápido con Kapeka Starter Kit"
   },
   "zod": {
     "email": "Correo electrónico inválido",
