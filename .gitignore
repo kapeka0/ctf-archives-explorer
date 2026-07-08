@@ -40,6 +40,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# convex
-convex/_generated
+# convex/_generated is committed so Vercel can build without a Convex deploy key
 

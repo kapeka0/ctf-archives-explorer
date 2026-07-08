@@ -1,8 +1,9 @@
 {
   "Auth": {
-    "welcome": "Bienvenido a Kapeka",
-    "welcomeMessage": "Inicia sesión para continuar a tu cuenta",
+    "welcome": "Bienvenido de nuevo",
+    "welcomeMessage": "Inicia sesión para votar y valorar CTFs",
     "signIn": "Iniciar sesión",
+    "signInSuccess": "¡Sesión iniciada!",
     "email": "Correo electrónico",
     "invalidEmail": "Correo electrónico inválido",
     "password": "Contraseña",
@@ -10,8 +11,8 @@
     "noAccount": "¿No tienes una cuenta?",
     "signUp": "Regístrate",
     "loginError": "Correo electrónico o contraseña inválidos",
-    "join": "Únete a Kapeka",
-    "joinMessage": "Comienza hoy mismo tu viaje",
+    "join": "Únete a CTF Archives",
+    "joinMessage": "Crea una cuenta para votar y valorar CTFs",
     "strongPassword": "Selecciona una contraseña segura",
     "confirmPassword": "Confirma tu contraseña",
     "preTerms": "Estoy de acuerdo con los ",
@@ -39,6 +40,7 @@
 
     "zod": {
       "email": "Correo electrónico inválido",
+      "passwordMatch": "Las contraseñas no coinciden",
       "passwordLength": "La contraseña debe tener al menos 8 caracteres",
       "passwordMaxLength": "La contraseña no puede tener más de 20 caracteres",
       "passwordLowercase": "La contraseña debe contener al menos una letra minúscula",
@@ -50,8 +52,27 @@
       "usernameLength": "El nombre  debe tener entre 3 y 20 caracteres."
     }
   },
+  "Ctf": {
+    "back": "Todos los CTFs",
+    "notFound": "CTF no encontrado",
+    "viewOnGithub": "Ver en GitHub",
+    "ctftime": "CTFtime",
+    "challenges": "retos",
+    "editions": "ediciones",
+    "categories": "categorías",
+    "files": "ficheros",
+    "upvote": "Voto positivo",
+    "downvote": "Voto negativo",
+    "difficulty": "Dificultad",
+    "noRatings": "Sin valoraciones aún",
+    "ratings": "{count} valoraciones",
+    "yourVote": "Tu voto",
+    "signInToVote": "Inicia sesión para votar y valorar la dificultad",
+    "voteError": "No se pudo guardar tu voto",
+    "yearJump": "Ir a la edición"
+  },
   "Global": {
-    "title": "Kapeka",
+    "title": "CTF Archives",
     "theme": "Tema",
     "light": "Claro",
     "dark": "Oscuro",
@@ -60,25 +81,34 @@
     "es": "Español",
     "en": "Inglés"
   },
+  "Home": {
+    "title": "Explora los archivos de CTF",
+    "subtitle": "Navega por los retos de cientos de competiciones Capture The Flag, vota tus favoritas y valora su dificultad.",
+    "searchPlaceholder": "Buscar CTFs...",
+    "ctfs": "CTFs",
+    "events": "eventos",
+    "challenges": "retos",
+    "sortBy": "Ordenar por",
+    "sortName": "Nombre",
+    "sortVotes": "Más votados",
+    "sortChallenges": "Más retos",
+    "noResults": "Ningún CTF coincide con tu búsqueda.",
+    "source": "Datos de",
+    "showing": "Mostrando {shown} de {total} CTFs"
+  },
   "LandingPage": {
-    "title": "Empieza a construir 🚀",
-    "description": "Kapeka Starter Kit — crea SaaS, herramientas de IA o apps web sin repetir boilerplate.",
-    "button": "Comenzar"
+    "title": "Explora los archivos de CTF",
+    "description": "Navega por los retos de cientos de competiciones CTF.",
+    "button": "Explorar"
   },
   "Metadata": {
-    "title": "Kapeka",
-    "description": "Crea SaaS rápido con Kapeka Starter Kit"
+    "title": "CTF Archives Explorer",
+    "description": "Navega, vota y valora retos de cientos de competiciones Capture The Flag, archivadas por sajjadium/ctf-archives."
   },
-  "zod": {
-    "email": "Correo electrónico inválido",
-    "passwordLength": "La contraseña debe tener al menos 8 caracteres",
-    "passwordMaxLength": "La contraseña no puede tener más de 20 caracteres",
-    "passwordLowercase": "La contraseña debe contener al menos una letra minúscula",
-    "passwordUppercase": "La contraseña debe contener al menos una letra mayúscula",
-    "passwordNumber": "La contraseña debe contener al menos un número",
-    "passwordSpecial": "La contraseña debe contener al menos un carácter especial",
-    "required": "Este campo es requerido",
-    "passwordRestriction": "La contraseña debe contener al menos una mayúscula, una minúscula y un número",
-    "usernameLength": "El nombre  debe tener entre 3 y 20 caracteres."
+  "Nav": {
+    "brand": "CTF Archives",
+    "signIn": "Iniciar sesión",
+    "signOut": "Cerrar sesión",
+    "account": "Cuenta"
   }
 }

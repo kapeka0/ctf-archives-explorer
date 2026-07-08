@@ -4,6 +4,7 @@ import { DM_Sans } from "next/font/google";
 import "../globals.css";
 
 import { cookies } from "next/headers";
+// eslint-disable-next-line no-restricted-imports -- raw redirect: the locale prefix is built manually here
 import { redirect } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";

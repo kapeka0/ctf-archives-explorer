@@ -1,7 +1,7 @@
-'use client'
+"use client";
 
-import { motion } from 'framer-motion'
-import { ReactNode } from 'react'
+import { ReactNode } from "react";
+import { motion } from "framer-motion";
 
 interface AnimatedUpEntranceProps {
   readonly children: ReactNode;
@@ -29,5 +29,5 @@ export default function AnimatedUpEntrance({
     >
       {children}
     </motion.div>
-  )
+  );
 }

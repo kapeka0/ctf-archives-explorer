@@ -1,5 +1,6 @@
 "use client";
 
+// eslint-disable-next-line no-restricted-imports -- useParams has no locale-aware equivalent
 import { useParams } from "next/navigation";
 import { Languages } from "lucide-react";
 import { useTranslations } from "next-intl";

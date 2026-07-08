@@ -6,8 +6,6 @@ import "./lib/env/server";
 
 const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
 
-const nextConfig: NextConfig = {
-  /* config options here */
-};
+const nextConfig: NextConfig = {/* config options here */};
 
 export default withNextIntl(nextConfig);

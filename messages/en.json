@@ -1,8 +1,9 @@
 {
   "Auth": {
-    "welcome": "Welcome to Kapeka",
-    "welcomeMessage": "Sign in to continue to your account",
+    "welcome": "Welcome back",
+    "welcomeMessage": "Sign in to vote and rate CTFs",
     "signIn": "Sign in",
+    "signInSuccess": "Signed in!",
     "email": "Email",
     "invalidEmail": "Invalid email",
     "password": "Password",
@@ -10,8 +11,8 @@
     "noAccount": "Don't have an account?",
     "signUp": "Sign up",
     "loginError": "Invalid email or password",
-    "join": "Join Kapeka",
-    "joinMessage": "Start your journey today",
+    "join": "Join CTF Archives",
+    "joinMessage": "Create an account to vote and rate CTFs",
     "strongPassword": "Choose a strong password",
     "confirmPassword": "Confirm your password",
     "preTerms": "I agree to the ",
@@ -50,8 +51,27 @@
       "usernameLength": "Name must be between 3 and 20 characters."
     }
   },
+  "Ctf": {
+    "back": "All CTFs",
+    "notFound": "CTF not found",
+    "viewOnGithub": "View on GitHub",
+    "ctftime": "CTFtime",
+    "challenges": "challenges",
+    "editions": "editions",
+    "categories": "categories",
+    "files": "files",
+    "upvote": "Upvote",
+    "downvote": "Downvote",
+    "difficulty": "Difficulty",
+    "noRatings": "No ratings yet",
+    "ratings": "{count} ratings",
+    "yourVote": "Your vote",
+    "signInToVote": "Sign in to vote and rate difficulty",
+    "voteError": "Could not save your vote",
+    "yearJump": "Jump to edition"
+  },
   "Global": {
-    "title": "Kapeka",
+    "title": "CTF Archives",
 
     "theme": "Theme",
     "light": "Light",
@@ -61,13 +81,34 @@
     "es": "Spanish",
     "en": "English"
   },
+  "Home": {
+    "title": "Explore the CTF Archives",
+    "subtitle": "Browse challenges from hundreds of Capture The Flag competitions, vote for your favorites and rate their difficulty.",
+    "searchPlaceholder": "Search CTFs...",
+    "ctfs": "CTFs",
+    "events": "events",
+    "challenges": "challenges",
+    "sortBy": "Sort by",
+    "sortName": "Name",
+    "sortVotes": "Top voted",
+    "sortChallenges": "Most challenges",
+    "noResults": "No CTFs match your search.",
+    "source": "Data from",
+    "showing": "Showing {shown} of {total} CTFs"
+  },
   "LandingPage": {
-    "title": "Start building 🚀",
-    "description": "Kapeka Starter Kit — build SaaS, AI tools or web apps quickly without repeating boilerplate code.",
-    "button": "Get started"
+    "title": "Explore the CTF Archives",
+    "description": "Browse challenges from hundreds of CTF competitions.",
+    "button": "Explore"
   },
   "Metadata": {
-    "title": "Kapeka",
-    "description": "Build SaaS fast with Kapeka Starter Kit"
+    "title": "CTF Archives Explorer",
+    "description": "Browse, vote and rate challenges from hundreds of Capture The Flag competitions, archived by sajjadium/ctf-archives."
+  },
+  "Nav": {
+    "brand": "CTF Archives",
+    "signIn": "Sign in",
+    "signOut": "Sign out",
+    "account": "Account"
   }
 }

@@ -1,32 +1,15 @@
-import { v } from "convex/values";
+import { getAuthUserId } from "@convex-dev/auth/server";
 
-import { mutation, query } from "./_generated/server";
+import { query } from "./_generated/server";
 
-export const getUser = query({
-  args: { email: v.string() },
-  handler: async (ctx, args) => {
-    return await ctx.db
-      .query("users")
-      .withIndex("by_email", (q) => q.eq("email", args.email))
-      .unique();
-  },
-});
-
-export const createUser = mutation({
-  args: {
-    name: v.string(),
-    email: v.string(),
-    imageUrl: v.optional(v.string()),
-    externalId: v.optional(v.string()),
-  },
-  handler: async (ctx, args) => {
-    const existing = await ctx.db
-      .query("users")
-      .withIndex("by_email", (q) => q.eq("email", args.email))
-      .unique();
-
-    if (existing) return existing._id;
-
-    return await ctx.db.insert("users", args);
+/** The currently signed-in user, or null. */
+export const viewer = query({
+  args: {},
+  handler: async (ctx) => {
+    const userId = await getAuthUserId(ctx);
+    if (!userId) return null;
+    const user = await ctx.db.get(userId);
+    if (!user) return null;
+    return { email: user.email ?? null, name: user.name ?? null };
   },
 });
