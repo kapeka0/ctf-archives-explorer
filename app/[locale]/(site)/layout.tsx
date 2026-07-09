@@ -12,23 +12,26 @@ function SiteLayout({ children }: Props) {
     <div className="flex min-h-screen flex-col">
       <SiteNavbar />
       <div className="flex-1">{children}</div>
-      <footer className="border-t py-6">
-        <MaxWidthWrapper className="flex flex-col items-center justify-between gap-2 text-xs text-muted-foreground sm:flex-row">
+      <footer className="mt-10 border-t border-border py-6">
+        <MaxWidthWrapper className="flex flex-col items-center justify-between gap-2 font-mono text-[11px] text-muted-foreground sm:flex-row">
+          <span>
+            Data ·{" "}
+            <ExternalLink
+              className="text-foreground/80 transition-colors hover:text-brand"
+              href={ARCHIVE_REPO}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              sajjadium/ctf-archives
+            </ExternalLink>
+          </span>
           <ExternalLink
-            className="hover:text-foreground hover:underline"
-            href={ARCHIVE_REPO}
+            className="transition-colors hover:text-brand"
+            href="https://github.com/kapeka0/ctf-archives-explorer"
             rel="noopener noreferrer"
             target="_blank"
           >
-            sajjadium/ctf-archives
-          </ExternalLink>
-          <ExternalLink
-            className="hover:text-foreground hover:underline"
-            href="https://github.com/kapeka0/kapeka-starter-kit"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            kapeka-starter-kit
+            source
           </ExternalLink>
         </MaxWidthWrapper>
       </footer>

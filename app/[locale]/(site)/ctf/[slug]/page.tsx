@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-restricted-imports -- notFound has no i18n wrapper
 import { notFound } from "next/navigation";
-import { ArrowLeft, ExternalLink as ExternalLinkIcon, Files, FolderGit2 } from "lucide-react";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import CtfActions from "@/components/ctf/CtfActions";
@@ -28,16 +28,13 @@ export async function generateMetadata({ params }: Props) {
 function ChallengeLink({ challenge }: { challenge: CtfChallenge }) {
   return (
     <ExternalLink
-      className="group flex items-center justify-between gap-2 rounded-lg border bg-card px-3 py-2 text-sm transition-colors hover:border-primary/60"
+      className="group flex items-center justify-between gap-2 rounded-md border border-border bg-card px-2.5 py-1.5 text-sm transition-colors hover:border-brand/50"
       href={githubTreeUrl(challenge.path)}
       rel="noopener noreferrer"
       target="_blank"
     >
-      <span className="truncate group-hover:text-primary">{challenge.name}</span>
-      <span className="flex shrink-0 items-center gap-1 font-mono text-[10px] text-muted-foreground">
-        <Files className="size-3" />
-        {challenge.files}
-      </span>
+      <span className="truncate font-mono text-[13px] text-foreground/90 group-hover:text-brand">{challenge.name}</span>
+      <ArrowUpRight className="size-3.5 shrink-0 text-muted-foreground/50 transition-colors group-hover:text-brand" />
     </ExternalLink>
   );
 }
@@ -52,37 +49,39 @@ async function YearSection({ year }: { year: CtfYear }) {
   }
 
   return (
-    <section className="scroll-mt-20 space-y-5" id={`y-${year.year}`}>
-      <div className="flex items-baseline gap-3 border-b pb-2">
-        <h2 className="font-mono text-2xl font-semibold tabular-nums">{year.year}</h2>
-        <span className="text-sm text-muted-foreground">
+    <section className="scroll-mt-20" id={`y-${year.year}`}>
+      <div className="mb-5 flex items-baseline gap-3">
+        <h2 className="font-mono text-xl font-semibold tabular-nums tracking-tight">{year.year}</h2>
+        <span className="font-mono text-[11px] text-muted-foreground">
           {year.challenges.length} {t("challenges")}
         </span>
         {year.ctftime ? (
           <ExternalLink
-            className="ml-auto flex items-center gap-1 text-xs text-muted-foreground hover:text-primary"
+            className="ml-auto flex items-center gap-1 font-mono text-[11px] text-muted-foreground transition-colors hover:text-brand"
             href={year.ctftime}
             rel="noopener noreferrer"
             target="_blank"
           >
             {t("ctftime")}
-            <ExternalLinkIcon className="size-3" />
+            <ArrowUpRight className="size-3" />
           </ExternalLink>
         ) : null}
       </div>
-      {[...byCategory.entries()].map(([category, challenges]) => (
-        <div className="space-y-2" key={category}>
-          <h3 className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-            {category}
-            <span className="ml-2 opacity-60">{challenges.length}</span>
-          </h3>
-          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-            {challenges.map((challenge) => (
-              <ChallengeLink challenge={challenge} key={challenge.path} />
-            ))}
+      <div className="space-y-6">
+        {[...byCategory.entries()].map(([category, challenges]) => (
+          <div className="grid gap-3 sm:grid-cols-[9rem_1fr]" key={category}>
+            <h3 className="pt-0.5 font-mono text-xs uppercase tracking-wider text-muted-foreground">
+              {category}
+              <span className="ml-1.5 text-border">{challenges.length}</span>
+            </h3>
+            <div className="grid gap-2 sm:grid-cols-2">
+              {challenges.map((challenge) => (
+                <ChallengeLink challenge={challenge} key={challenge.path} />
+              ))}
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </section>
   );
 }
@@ -97,63 +96,68 @@ export default async function CtfPage({ params }: Props) {
   const totalChallenges = detail.years.reduce((n, y) => n + y.challenges.length, 0);
 
   return (
-    <MaxWidthWrapper className="space-y-8 py-10">
-      <div className="space-y-5">
-        <Link
-          className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
-          href="/"
-        >
-          <ArrowLeft className="size-4" />
-          {t("back")}
-        </Link>
+    <MaxWidthWrapper className="py-10">
+      <Link
+        className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-wider text-muted-foreground transition-colors hover:text-foreground"
+        href="/"
+      >
+        <ArrowLeft className="size-3.5" />
+        {t("back")}
+      </Link>
 
-        <div className="space-y-3">
-          <h1 className="text-4xl font-bold tracking-tight">{detail.name}</h1>
-          <p className="text-sm text-muted-foreground">
-            {detail.years.length} {t("editions")} · {totalChallenges} {t("challenges")}
-          </p>
-          <div className="flex flex-wrap items-center gap-4 text-sm">
+      <header className="mt-6 border-b border-border pb-8">
+        <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">{detail.name}</h1>
+        <p className="mt-2 font-mono text-[13px] text-muted-foreground">
+          {detail.years.length} {t("editions")}
+          <span className="mx-2 text-border">·</span>
+          {totalChallenges} {t("challenges")}
+          <span className="mx-2 text-border">·</span>
+          {detail.years[detail.years.length - 1].year}–{detail.years[0].year}
+        </p>
+
+        <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-[13px]">
+          <ExternalLink
+            className="flex items-center gap-1.5 text-muted-foreground transition-colors hover:text-brand"
+            href={githubTreeUrl(detail.name)}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            {t("viewOnGithub")}
+            <ArrowUpRight className="size-3.5" />
+          </ExternalLink>
+          {detail.ctftime ? (
             <ExternalLink
-              className="flex items-center gap-1.5 text-muted-foreground transition-colors hover:text-primary"
-              href={githubTreeUrl(detail.name)}
+              className="flex items-center gap-1.5 text-muted-foreground transition-colors hover:text-brand"
+              href={detail.ctftime}
               rel="noopener noreferrer"
               target="_blank"
             >
-              <FolderGit2 className="size-4" />
-              {t("viewOnGithub")}
+              {t("ctftime")}
+              <ArrowUpRight className="size-3.5" />
             </ExternalLink>
-            {detail.ctftime ? (
-              <ExternalLink
-                className="flex items-center gap-1.5 text-muted-foreground transition-colors hover:text-primary"
-                href={detail.ctftime}
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                <ExternalLinkIcon className="size-4" />
-                {t("ctftime")}
-              </ExternalLink>
-            ) : null}
-          </div>
+          ) : null}
         </div>
 
-        <CtfActions slug={detail.slug} />
+        <div className="mt-6">
+          <CtfActions slug={detail.slug} />
+        </div>
 
         {detail.years.length > 1 ? (
-          <div className="flex flex-wrap gap-1.5">
+          <nav className="mt-6 flex flex-wrap gap-1.5" aria-label={t("yearJump")}>
             {detail.years.map((year) => (
               <ExternalLink
-                className="rounded-full border px-3 py-1 font-mono text-xs text-muted-foreground transition-colors hover:border-primary/60 hover:text-foreground"
+                className="rounded border border-border px-2 py-1 font-mono text-[11px] text-muted-foreground transition-colors hover:border-brand/50 hover:text-foreground"
                 href={`#y-${year.year}`}
                 key={year.year}
               >
                 {year.year}
               </ExternalLink>
             ))}
-          </div>
+          </nav>
         ) : null}
-      </div>
+      </header>
 
-      <div className="space-y-12">
+      <div className="mt-10 space-y-12">
         {detail.years.map((year) => (
           <YearSection key={year.year} year={year} />
         ))}

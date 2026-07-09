@@ -14,26 +14,39 @@ export default async function Home({ params }: Props) {
   const t = await getTranslations("Home");
   const index = await getCtfIndex();
 
-  const stats = [
+  const ledger = [
     { value: index.stats.ctfs, label: t("ctfs") },
     { value: index.stats.events, label: t("events") },
     { value: index.stats.challenges, label: t("challenges") },
   ];
 
   return (
-    <MaxWidthWrapper className="space-y-10 py-12">
-      <section className="space-y-4 text-center">
-        <h1 className="text-balance text-4xl font-bold tracking-tight sm:text-5xl">{t("title")}</h1>
-        <p className="mx-auto max-w-2xl text-pretty text-muted-foreground">{t("subtitle")}</p>
-        <div className="flex items-center justify-center gap-8 pt-2">
-          {stats.map((stat) => (
-            <div className="text-center" key={stat.label}>
-              <p className="font-mono text-2xl font-semibold tabular-nums">{stat.value.toLocaleString()}</p>
-              <p className="text-xs uppercase tracking-wide text-muted-foreground">{stat.label}</p>
+    <MaxWidthWrapper className="py-14 sm:py-20">
+      <section className="max-w-2xl">
+        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">{t("eyebrow")}</p>
+        <h1 className="mt-4 text-pretty text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl">
+          {t("titleLead")}{" "}
+          <span className="font-mono font-medium">
+            <span className="text-brand">{"{"}</span>
+            {t("titleFlag")}
+            <span className="text-brand">{"}"}</span>
+          </span>
+        </h1>
+        <p className="mt-5 max-w-xl text-pretty leading-relaxed text-muted-foreground">{t("subtitle")}</p>
+
+        <dl className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 font-mono text-sm">
+          {ledger.map((stat, i) => (
+            <div className="flex items-baseline gap-2" key={stat.label}>
+              {i > 0 ? <span className="mr-4 hidden h-4 w-px bg-border sm:inline-block" /> : null}
+              <dt className="sr-only">{stat.label}</dt>
+              <dd className="font-semibold tabular-nums text-foreground">{stat.value.toLocaleString()}</dd>
+              <span className="text-muted-foreground">{stat.label}</span>
             </div>
           ))}
-        </div>
+        </dl>
       </section>
+
+      <hr className="my-12 border-border" />
 
       <CtfExplorer ctfs={index.ctfs} />
     </MaxWidthWrapper>

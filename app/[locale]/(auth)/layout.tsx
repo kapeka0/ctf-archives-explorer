@@ -1,4 +1,3 @@
-import MaxWidthWrapper from "@/components/ui/MaxWidthWrapper";
 import AuthNavbar from "./_components/AuthNavbar";
 
 type Props = {
@@ -7,10 +6,10 @@ type Props = {
 
 async function AuthLayout({ children }: Props) {
   return (
-    <MaxWidthWrapper className="flex flex-col items-center justify-center h-screen p-5  text-pretty">
+    <div className="relative flex min-h-screen flex-col items-center justify-center px-5 text-pretty">
       <AuthNavbar />
       {children}
-    </MaxWidthWrapper>
+    </div>
   );
 }
 

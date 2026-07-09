@@ -1,7 +1,5 @@
-import Image from "next/image";
 import { useTranslations } from "next-intl";
 
-import AnimatedUpEntrance from "@/components/ui/framer/AnimatedUpEntrance";
 import { Link } from "@/i18n/routing";
 import SignUpForm from "../_components/SignUpForm";
 
@@ -9,24 +7,23 @@ function SignUpPage() {
   const tAuth = useTranslations("Auth");
 
   return (
-    <div className="flex w-full h-full flex-col justify-center items-center space-y-5">
-      <div className="flex flex-col items-center justify-center space-y-2 text-center">
-        <AnimatedUpEntrance delay={0.2} duration={0.4}>
-          <Image alt="Appname" className="shrink-0" height={80} src="/images/logos/logo.svg" width={80} />
-        </AnimatedUpEntrance>
-
-        <AnimatedUpEntrance delay={0} duration={0.3}>
-          <h1 className="text-3xl font-extrabold">{tAuth("join")}</h1>
-        </AnimatedUpEntrance>
-
-        <AnimatedUpEntrance delay={0} duration={0.4}>
-          <p className="text-sm text-muted-foreground">{tAuth("joinMessage")}</p>
-        </AnimatedUpEntrance>
+    <div className="w-full max-w-sm">
+      <div className="space-y-1.5">
+        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+          {"// "}
+          {tAuth("signUp")}
+        </p>
+        <h1 className="text-2xl font-semibold tracking-tight">{tAuth("join")}</h1>
+        <p className="text-sm text-muted-foreground">{tAuth("joinMessage")}</p>
       </div>
-      <SignUpForm />
-      <p className="text-sm text-muted-foreground text-center">
+
+      <div className="mt-7">
+        <SignUpForm />
+      </div>
+
+      <p className="mt-6 font-mono text-[11px] text-muted-foreground">
         {tAuth("alreadyAccount")}{" "}
-        <Link className="cursor-pointer text-primary" href="/sign-in">
+        <Link className="text-brand hover:underline" href="/sign-in">
           {tAuth("signIn")}
         </Link>
       </p>

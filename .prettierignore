@@ -2,3 +2,5 @@
 /.next
 /out
 /build
+/convex/_generated
+/data/generated

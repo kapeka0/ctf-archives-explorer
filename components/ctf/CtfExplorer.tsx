@@ -1,10 +1,11 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useDeferredValue, useMemo, useState } from "react";
 import { useQuery } from "convex/react";
-import { ArrowBigDown, ArrowBigUp, Flame, Search } from "lucide-react";
+import { Search } from "lucide-react";
 import { useTranslations } from "next-intl";
 
+import DifficultyMeter from "@/components/ctf/DifficultyMeter";
 import { Input } from "@/components/ui/input";
 import { api } from "@/convex/_generated/api";
 import { Link } from "@/i18n/routing";
@@ -19,62 +20,68 @@ function yearsLabel(years: string[]) {
   if (years.length === 0) return "";
   if (years.length === 1) return years[0];
   const sorted = [...years].sort();
-  return `${sorted[0]} – ${sorted[sorted.length - 1]}`;
+  return `${sorted[0]}–${sorted[sorted.length - 1].slice(2)}`;
 }
 
 function CtfCard({ ctf, stats }: { ctf: CtfIndexEntry; stats: Stats | undefined }) {
   const t = useTranslations("Home");
   const tCtf = useTranslations("Ctf");
+  const net = stats ? stats.up - stats.down : 0;
 
   return (
     <Link
-      className="group flex flex-col justify-between gap-3 rounded-xl border bg-card p-4 transition-colors hover:border-primary/60"
+      className="group relative flex flex-col gap-3 rounded-lg border border-border bg-card p-4 transition-[border-color,transform] duration-150 hover:-translate-y-0.5 hover:border-brand/50 focus-visible:border-brand focus-visible:outline-none"
       href={`/ctf/${ctf.slug}`}
     >
-      <div className="space-y-1">
-        <div className="flex items-start justify-between gap-2">
-          <h3 className="font-semibold leading-tight tracking-tight group-hover:text-primary">{ctf.name}</h3>
-          {stats && stats.difficulty !== null ? (
-            <span className="flex shrink-0 items-center gap-1 text-xs text-muted-foreground" title={tCtf("difficulty")}>
-              <Flame className="size-3.5 text-orange-500" />
-              {stats.difficulty.toFixed(1)}
-            </span>
-          ) : null}
-        </div>
-        <p className="text-xs text-muted-foreground">
-          {yearsLabel(ctf.years)} · {ctf.years.length} {tCtf("editions")}
-        </p>
-      </div>
-      <div className="flex items-center justify-between gap-2">
-        <div className="flex flex-wrap gap-1">
-          {ctf.categories.slice(0, 4).map((cat) => (
-            <span className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground" key={cat}>
-              {cat}
-            </span>
-          ))}
-        </div>
-        <div className="flex shrink-0 items-center gap-2 text-xs text-muted-foreground">
-          {stats && (stats.up > 0 || stats.down > 0) ? (
-            <span className="flex items-center gap-0.5">
-              <ArrowBigUp className="size-3.5 text-emerald-500" />
-              {stats.up}
-              <ArrowBigDown className="ml-1 size-3.5 text-red-500" />
-              {stats.down}
-            </span>
-          ) : null}
-          <span className="font-mono">
-            {ctf.count} {t("challenges")}
+      <div className="flex items-start justify-between gap-3">
+        <h3 className="text-[15px] font-medium leading-snug tracking-tight text-foreground">{ctf.name}</h3>
+        {stats?.difficulty != null ? (
+          <span className="mt-0.5 flex shrink-0 items-center gap-1.5" title={tCtf("difficulty")}>
+            <DifficultyMeter value={stats.difficulty} className="[&>span]:h-2.5" />
+            <span className="font-mono text-[11px] text-muted-foreground">{stats.difficulty.toFixed(1)}</span>
           </span>
-        </div>
+        ) : null}
+      </div>
+
+      <p className="font-mono text-[11px] text-muted-foreground">
+        {yearsLabel(ctf.years)}
+        <span className="mx-1.5 text-border">·</span>
+        {ctf.years.length} {tCtf("editions")}
+      </p>
+
+      <div className="mt-auto flex flex-wrap gap-1 pt-1">
+        {ctf.categories.slice(0, 4).map((cat) => (
+          <span
+            className="rounded border border-border/70 px-1.5 py-0.5 font-mono text-[10px] leading-none text-muted-foreground"
+            key={cat}
+          >
+            {cat}
+          </span>
+        ))}
+      </div>
+
+      <div className="flex items-center justify-between border-t border-border/60 pt-2.5 font-mono text-[11px] text-muted-foreground">
+        <span>
+          <span className="text-foreground">{ctf.count}</span> {t("challenges")}
+        </span>
+        {net !== 0 ? (
+          <span className={cn(net > 0 ? "text-success" : "text-danger")}>
+            {net > 0 ? "+" : ""}
+            {net}
+          </span>
+        ) : null}
       </div>
     </Link>
   );
 }
 
+const SORT_KEYS: SortKey[] = ["name", "votes", "challenges"];
+
 function CtfExplorer({ ctfs }: { ctfs: CtfIndexEntry[] }) {
   const t = useTranslations("Home");
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState<SortKey>("name");
+  const deferredSearch = useDeferredValue(search);
   const allStats = useQuery(api.ctfs.allStats);
 
   const statsBySlug = useMemo(() => {
@@ -84,7 +91,7 @@ function CtfExplorer({ ctfs }: { ctfs: CtfIndexEntry[] }) {
   }, [allStats]);
 
   const visible = useMemo(() => {
-    const q = search.trim().toLowerCase();
+    const q = deferredSearch.trim().toLowerCase();
     const filtered = q ? ctfs.filter((c) => c.name.toLowerCase().includes(q)) : [...ctfs];
     if (sort === "challenges") {
       filtered.sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
@@ -96,49 +103,48 @@ function CtfExplorer({ ctfs }: { ctfs: CtfIndexEntry[] }) {
       filtered.sort((a, b) => net(b) - net(a) || a.name.localeCompare(b.name));
     }
     return filtered;
-  }, [ctfs, search, sort, statsBySlug]);
-
-  const sortOptions: { key: SortKey; label: string }[] = [
-    { key: "name", label: t("sortName") },
-    { key: "votes", label: t("sortVotes") },
-    { key: "challenges", label: t("sortChallenges") },
-  ];
+  }, [ctfs, deferredSearch, sort, statsBySlug]);
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-5">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="relative w-full sm:max-w-xs">
-          <Search className="absolute left-2.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+          <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
           <Input
-            className="pl-8"
+            className="h-9 pl-9 font-mono text-sm placeholder:text-muted-foreground/60"
             onChange={(e) => setSearch(e.target.value)}
             placeholder={t("searchPlaceholder")}
             value={search}
           />
         </div>
-        <div className="flex items-center gap-1">
-          {sortOptions.map((option) => (
-            <button
-              className={cn(
-                "rounded-full border px-3 py-1 text-xs transition-colors",
-                sort === option.key
-                  ? "border-primary bg-primary text-primary-foreground"
-                  : "text-muted-foreground hover:border-primary/50 hover:text-foreground"
-              )}
-              key={option.key}
-              onClick={() => setSort(option.key)}
-              type="button"
-            >
-              {option.label}
-            </button>
-          ))}
+        <div className="flex items-center gap-3">
+          <span className="hidden font-mono text-[11px] uppercase tracking-wider text-muted-foreground sm:inline">
+            {t("sortBy")}
+          </span>
+          <div className="flex items-center rounded-md border border-border p-0.5">
+            {SORT_KEYS.map((key) => (
+              <button
+                className={cn(
+                  "rounded px-2.5 py-1 font-mono text-[11px] transition-colors",
+                  sort === key ? "bg-secondary text-foreground" : "text-muted-foreground hover:text-foreground"
+                )}
+                key={key}
+                onClick={() => setSort(key)}
+                type="button"
+              >
+                {t(key === "name" ? "sortName" : key === "votes" ? "sortVotes" : "sortChallenges")}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
-      <p className="text-xs text-muted-foreground">{t("showing", { shown: visible.length, total: ctfs.length })}</p>
+      <p className="font-mono text-[11px] text-muted-foreground">
+        {t("showing", { shown: visible.length, total: ctfs.length })}
+      </p>
 
       {visible.length === 0 ? (
-        <p className="py-16 text-center text-muted-foreground">{t("noResults")}</p>
+        <p className="py-20 text-center font-mono text-sm text-muted-foreground">{t("noResults")}</p>
       ) : (
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {visible.map((ctf) => (

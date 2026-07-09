@@ -82,9 +82,12 @@
     "en": "English"
   },
   "Home": {
+    "eyebrow": "Public archive · sajjadium/ctf-archives",
+    "titleLead": "Capture The Flag,",
+    "titleFlag": "archived",
     "title": "Explore the CTF Archives",
-    "subtitle": "Browse challenges from hundreds of Capture The Flag competitions, vote for your favorites and rate their difficulty.",
-    "searchPlaceholder": "Search CTFs...",
+    "subtitle": "Challenges from hundreds of competitions, preserved and searchable. Vote the classics up, and rate what actually broke you.",
+    "searchPlaceholder": "search competitions",
     "ctfs": "CTFs",
     "events": "events",
     "challenges": "challenges",

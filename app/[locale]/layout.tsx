@@ -1,4 +1,5 @@
-import { DM_Sans } from "next/font/google";
+import { GeistMono } from "geist/font/mono";
+import { GeistSans } from "geist/font/sans";
 
 // @ts-ignore - allow global CSS side-effect import in Next.js app directory
 import "../globals.css";
@@ -26,11 +27,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
-const dmSans = DM_Sans({
-  subsets: ["latin"],
-  variable: "--font-dm-sans",
-});
-
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
@@ -52,11 +48,11 @@ export default async function RootLayout({
   }
   setRequestLocale(locale);
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={locale} className={cn(GeistSans.variable, GeistMono.variable)} suppressHydrationWarning>
       <head>
         <link rel="icon" href="/images/logos/logo.svg" type="image/svg+xml" sizes="any" />
       </head>
-      <body className={cn(dmSans.className, "h-full antialiased")}>
+      <body className={cn(GeistSans.className, "h-full antialiased")}>
         <ConvexClientProvider>
           <NextIntlClientProvider messages={messages}>
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
