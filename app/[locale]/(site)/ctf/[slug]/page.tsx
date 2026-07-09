@@ -37,7 +37,7 @@ export default async function CtfPage({ params }: Props) {
   return (
     <MaxWidthWrapper className="py-10">
       <Link
-        className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-wider text-muted-foreground transition-colors hover:text-foreground"
+        className="inline-flex items-center gap-1.5 font-mono text-[11px] tracking-wider text-muted-foreground transition-colors hover:text-foreground"
         href="/"
       >
         <ArrowLeft className="size-3.5" />

@@ -1,13 +1,14 @@
 "use client";
 
 import { useConvexAuth, useMutation, useQuery } from "convex/react";
-import { ArrowBigDown, ArrowBigUp, ArrowUpRight } from "lucide-react";
+import { ArrowBigDown, ArrowBigUp, ArrowUpRight, Bookmark } from "lucide-react";
 import { useTranslations } from "next-intl";
 import toast from "react-hot-toast";
 
 import DifficultyMeter from "@/components/ctf/DifficultyMeter";
 import ExternalLink from "@/components/ui/external-link";
 import { api } from "@/convex/_generated/api";
+import { useRouter } from "@/i18n/routing";
 import { githubTreeUrl, type CtfChallenge, type CtfYear } from "@/lib/ctf/types";
 import { cn } from "@/lib/utils";
 
@@ -18,6 +19,7 @@ type ChallengeStat = { up: number; down: number; difficulty: number | null; rati
 type Handlers = {
   onVote: (key: string, value: 1 | -1) => void;
   onRate: (key: string, difficulty: number) => void;
+  onFavorite: (key: string) => void;
 };
 
 function ChallengeRow({
@@ -25,12 +27,14 @@ function ChallengeRow({
   stat,
   myVote,
   myRating,
+  isFavorited,
   h,
 }: {
   challenge: CtfChallenge;
   stat: ChallengeStat | undefined;
   myVote: 1 | -1 | undefined;
   myRating: number | undefined;
+  isFavorited: boolean;
   h: Handlers;
 }) {
   const t = useTranslations("Ctf");
@@ -49,6 +53,19 @@ function ChallengeRow({
         </span>
         <ArrowUpRight className="size-3 shrink-0 text-muted-foreground/40 transition-colors group-hover:text-brand" />
       </ExternalLink>
+
+      <button
+        aria-label={t("favorite")}
+        aria-pressed={isFavorited}
+        className={cn(
+          "shrink-0 p-1 transition-colors",
+          isFavorited ? "text-brand" : "text-muted-foreground/40 hover:text-brand/60"
+        )}
+        onClick={() => h.onFavorite(challenge.path)}
+        type="button"
+      >
+        <Bookmark className={cn("size-3.5", isFavorited && "fill-current")} />
+      </button>
 
       <div className="flex shrink-0 items-center">
         {LEVELS.map((level) => (
@@ -104,14 +121,19 @@ function ChallengeRow({
 
 function CtfBoard({ slug, years }: { slug: string; years: CtfYear[] }) {
   const t = useTranslations("Ctf");
+  const router = useRouter();
   const data = useQuery(api.ctfs.ctfChallengeStats, { slug });
+  const favKeys = useQuery(api.favorites.forCtf, { slug });
   const { isAuthenticated } = useConvexAuth();
   const voteChallenge = useMutation(api.ctfs.voteChallenge);
   const rateChallenge = useMutation(api.ctfs.rateChallenge);
+  const toggleFavorite = useMutation(api.favorites.toggle);
+
+  const favSet = new Set(favKeys ?? []);
 
   const requireAuth = () => {
     if (isAuthenticated) return true;
-    toast(t("signInToVote"));
+    router.push("/sign-in");
     return false;
   };
 
@@ -132,6 +154,10 @@ function CtfBoard({ slug, years }: { slug: string; years: CtfYear[] }) {
         difficulty: current === difficulty ? 0 : difficulty,
       }).catch(() => toast.error(t("voteError")));
     },
+    onFavorite: (key) => {
+      if (!requireAuth()) return;
+      void toggleFavorite({ ctfSlug: slug, key }).catch(() => toast.error(t("voteError")));
+    },
   };
 
   const summary = data?.summary;
@@ -139,7 +165,7 @@ function CtfBoard({ slug, years }: { slug: string; years: CtfYear[] }) {
   return (
     <>
       <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 rounded-lg border border-border bg-card px-4 py-3">
-        <span className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">{t("average")}</span>
+        <span className="font-mono text-[11px] tracking-wider text-muted-foreground">{t("average")}</span>
         <span className="flex items-center gap-2">
           <DifficultyMeter value={summary?.difficulty ?? 0} />
           <span className="font-mono text-sm">
@@ -183,7 +209,7 @@ function CtfBoard({ slug, years }: { slug: string; years: CtfYear[] }) {
               <div className="space-y-6">
                 {[...byCategory.entries()].map(([category, challenges]) => (
                   <div className="grid gap-3 sm:grid-cols-[8rem_1fr]" key={category}>
-                    <h3 className="pt-1.5 font-mono text-xs uppercase tracking-wider text-muted-foreground">
+                    <h3 className="pt-1.5 font-mono text-xs tracking-wider text-muted-foreground">
                       {category}
                       <span className="ml-1.5 text-border">{challenges.length}</span>
                     </h3>
@@ -192,6 +218,7 @@ function CtfBoard({ slug, years }: { slug: string; years: CtfYear[] }) {
                         <ChallengeRow
                           challenge={challenge}
                           h={h}
+                          isFavorited={favSet.has(challenge.path)}
                           key={challenge.path}
                           myRating={data?.myRatings[challenge.path]}
                           myVote={data?.myVotes[challenge.path]}

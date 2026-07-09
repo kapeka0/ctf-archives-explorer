@@ -72,7 +72,9 @@
     "yearJump": "Jump to edition",
     "average": "Average",
     "net": "net",
-    "rateHint": "Vote and rate each challenge below."
+    "rateHint": "Vote and rate each challenge below.",
+    "favorite": "Save for later",
+    "favorited": "Saved"
   },
   "Global": {
     "title": "CTF Archives",
@@ -128,8 +130,8 @@
     "subtitle": "Add a competition you played — no account needed. It shows up for everyone once you submit.",
     "name": "Name",
     "year": "Year",
-    "url": "Link (optional)",
-    "categories": "Categories (optional)",
+    "url": "Link",
+    "categories": "Categories",
     "notes": "Notes (optional)",
     "notesPlaceholder": "Anything worth knowing about this CTF",
     "cta": "Submit CTF",

@@ -141,7 +141,11 @@ function CtfExplorer({ ctfs }: { ctfs: CtfIndexEntry[] }) {
 
   const visible = useMemo(() => {
     const q = deferredSearch.trim().toLowerCase();
-    const filtered = q ? ctfs.filter((c) => c.name.toLowerCase().includes(q)) : [...ctfs];
+    const filtered = q
+      ? ctfs.filter(
+          (c) => c.name.toLowerCase().includes(q) || c.categories.some((cat) => cat.toLowerCase().includes(q))
+        )
+      : [...ctfs];
     if (sort === "challenges") {
       filtered.sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
     } else if (sort === "votes") {
@@ -157,7 +161,11 @@ function CtfExplorer({ ctfs }: { ctfs: CtfIndexEntry[] }) {
   const visibleSubmissions = useMemo(() => {
     const q = deferredSearch.trim().toLowerCase();
     const list = submissions ?? [];
-    return q ? list.filter((s) => s.name.toLowerCase().includes(q)) : list;
+    return q
+      ? list.filter(
+          (s) => s.name.toLowerCase().includes(q) || s.categories.some((cat) => cat.toLowerCase().includes(q))
+        )
+      : list;
   }, [submissions, deferredSearch]);
 
   const isArchive = source === "archive";

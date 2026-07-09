@@ -1,5 +1,7 @@
 import { GeistMono } from "geist/font/mono";
-import { GeistSans } from "geist/font/sans";
+import { Caveat } from "next/font/google";
+
+const caveat = Caveat({ subsets: ["latin"], variable: "--font-caveat", display: "swap" });
 
 // @ts-ignore - allow global CSS side-effect import in Next.js app directory
 import "../globals.css";
@@ -48,11 +50,11 @@ export default async function RootLayout({
   }
   setRequestLocale(locale);
   return (
-    <html lang={locale} className={cn(GeistSans.variable, GeistMono.variable)} suppressHydrationWarning>
+    <html lang={locale} className={cn(caveat.variable, GeistMono.variable)} suppressHydrationWarning>
       <head>
         <link rel="icon" href="/images/logos/logo.svg" type="image/svg+xml" sizes="any" />
       </head>
-      <body className={cn(GeistSans.className, "h-full antialiased")}>
+      <body className={cn(caveat.className, "h-full antialiased")}>
         <ConvexClientProvider>
           <NextIntlClientProvider messages={messages}>
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>

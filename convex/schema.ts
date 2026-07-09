@@ -55,4 +55,20 @@ export default defineSchema({
     categories: v.array(v.string()),
     notes: v.optional(v.string()),
   }),
+
+  // Bookmarked challenges per user ("do later").
+  favorites: defineTable({
+    userId: v.id("users"),
+    ctfSlug: v.string(),
+    key: v.string(),
+  })
+    .index("by_user", ["userId"])
+    .index("by_user_ctf", ["userId", "ctfSlug"])
+    .index("by_user_key", ["userId", "key"]),
+
+  // Cached cat avatar URL per user.
+  userProfiles: defineTable({
+    userId: v.id("users"),
+    avatarUrl: v.string(),
+  }).index("by_user", ["userId"]),
 });

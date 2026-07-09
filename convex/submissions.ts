@@ -38,9 +38,10 @@ export const submit = mutation({
     if (!name || name.length > MAX.name) throw new Error("Invalid name");
     if (!/^\d{4}$/.test(year)) throw new Error("Year must be four digits");
 
-    const url = args.url?.trim() || undefined;
-    if (url && !/^https?:\/\//.test(url)) throw new Error("URL must start with http(s)://");
-    if (url && url.length > MAX.url) throw new Error("URL too long");
+    const url = args.url?.trim();
+    if (!url) throw new Error("URL is required");
+    if (!/^https?:\/\//.test(url)) throw new Error("URL must start with http(s)://");
+    if (url.length > MAX.url) throw new Error("URL too long");
 
     const notes = args.notes?.trim() || undefined;
     if (notes && notes.length > MAX.notes) throw new Error("Notes too long");

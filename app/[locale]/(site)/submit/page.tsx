@@ -20,7 +20,7 @@ export default async function SubmitPage({ params }: Props) {
 
   return (
     <MaxWidthWrapper className="max-w-xl py-14">
-      <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+      <p className="font-mono text-[11px] tracking-wider text-muted-foreground">
         {"// "}
         {t("eyebrow")}
       </p>

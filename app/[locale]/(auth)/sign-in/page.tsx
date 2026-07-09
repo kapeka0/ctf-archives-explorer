@@ -9,7 +9,7 @@ function SignInPage() {
   return (
     <div className="w-full max-w-sm">
       <div className="space-y-1.5">
-        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+        <p className="font-mono text-[11px] tracking-wider text-muted-foreground">
           {"// "}
           {tAuth("signIn")}
         </p>
