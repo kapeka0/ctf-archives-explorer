@@ -31,4 +31,14 @@ export default defineSchema({
     difficultySum: v.number(),
     difficultyCount: v.number(),
   }).index("by_slug", ["slug"]),
+
+  // User-submitted CTFs (queried by default _creationTime order).
+  submissions: defineTable({
+    userId: v.id("users"),
+    name: v.string(),
+    year: v.string(),
+    url: v.optional(v.string()),
+    categories: v.array(v.string()),
+    notes: v.optional(v.string()),
+  }),
 });

@@ -11,6 +11,7 @@
 import type * as auth from "../auth.js";
 import type * as ctfs from "../ctfs.js";
 import type * as http from "../http.js";
+import type * as submissions from "../submissions.js";
 import type * as users from "../users.js";
 
 import type {
@@ -23,6 +24,7 @@ declare const fullApi: ApiFromModules<{
   auth: typeof auth;
   ctfs: typeof ctfs;
   http: typeof http;
+  submissions: typeof submissions;
   users: typeof users;
 }>;
 

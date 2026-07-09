@@ -82,12 +82,13 @@
     "en": "English"
   },
   "Home": {
-    "eyebrow": "Public archive · sajjadium/ctf-archives",
-    "titleLead": "Capture The Flag,",
-    "titleFlag": "archived",
-    "title": "Explore the CTF Archives",
-    "subtitle": "Challenges from hundreds of competitions, preserved and searchable. Vote the classics up, and rate what actually broke you.",
+    "eyebrow": "ctf --list",
+    "titleLead": "Every CTF, one",
+    "titleFlag": "archive",
+    "title": "CTF Archive",
+    "subtitle": "Hundreds of competitions in one place. Vote the classics up, rate their difficulty, and submit the ones you played.",
     "searchPlaceholder": "search competitions",
+    "community": "Submitted by the community",
     "ctfs": "CTFs",
     "events": "events",
     "challenges": "challenges",
@@ -96,22 +97,41 @@
     "sortVotes": "Top voted",
     "sortChallenges": "Most challenges",
     "noResults": "No CTFs match your search.",
-    "source": "Data from",
     "showing": "Showing {shown} of {total} CTFs"
   },
   "LandingPage": {
-    "title": "Explore the CTF Archives",
-    "description": "Browse challenges from hundreds of CTF competitions.",
+    "title": "CTF Archive",
+    "description": "Hundreds of CTF competitions in one place.",
     "button": "Explore"
   },
   "Metadata": {
-    "title": "CTF Archives Explorer",
-    "description": "Browse, vote and rate challenges from hundreds of Capture The Flag competitions, archived by sajjadium/ctf-archives."
+    "title": "CTF Archive",
+    "description": "Hundreds of Capture The Flag competitions in one place. Vote, rate difficulty, and submit your own."
   },
   "Nav": {
-    "brand": "CTF Archives",
+    "brand": "CTF Archive",
+    "submit": "Submit",
     "signIn": "Sign in",
     "signOut": "Sign out",
     "account": "Account"
+  },
+  "Submit": {
+    "eyebrow": "submit",
+    "title": "Submit a CTF",
+    "subtitle": "Add a competition you played. It shows up for everyone once you submit.",
+    "name": "Name",
+    "year": "Year",
+    "url": "Link (optional)",
+    "categories": "Categories (optional)",
+    "notes": "Notes (optional)",
+    "notesPlaceholder": "Anything worth knowing about this CTF",
+    "cta": "Submit CTF",
+    "success": "Submitted. Thanks!",
+    "error": "Could not submit. Try again.",
+    "required": "Required",
+    "yearError": "Enter a four-digit year",
+    "urlError": "Enter a valid URL",
+    "needAccount": "You need an account to submit a CTF.",
+    "signIn": "Sign in"
   }
 }

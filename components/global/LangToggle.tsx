@@ -34,7 +34,7 @@ export default function LangToggle() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button className="size-8" variant="outline" size="icon">
+        <Button className="size-8 rounded-full text-muted-foreground hover:text-foreground" variant="ghost" size="icon">
           <Languages className="h-[1.1rem] w-[1.1rem]" />
           <span className="sr-only">{t("lang")}</span>
         </Button>

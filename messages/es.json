@@ -82,12 +82,13 @@
     "en": "Inglés"
   },
   "Home": {
-    "eyebrow": "Archivo público · sajjadium/ctf-archives",
-    "titleLead": "Capture The Flag,",
-    "titleFlag": "archivado",
-    "title": "Explora los archivos de CTF",
-    "subtitle": "Retos de cientos de competiciones, preservados y buscables. Vota los clásicos y valora los que de verdad te rompieron.",
+    "eyebrow": "ctf --list",
+    "titleLead": "Cada CTF, un",
+    "titleFlag": "archivo",
+    "title": "CTF Archive",
+    "subtitle": "Cientos de competiciones en un solo sitio. Vota los clásicos, valora su dificultad y sube los que jugaste.",
     "searchPlaceholder": "buscar competiciones",
+    "community": "Subidos por la comunidad",
     "ctfs": "CTFs",
     "events": "eventos",
     "challenges": "retos",
@@ -96,22 +97,41 @@
     "sortVotes": "Más votados",
     "sortChallenges": "Más retos",
     "noResults": "Ningún CTF coincide con tu búsqueda.",
-    "source": "Datos de",
     "showing": "Mostrando {shown} de {total} CTFs"
   },
   "LandingPage": {
-    "title": "Explora los archivos de CTF",
-    "description": "Navega por los retos de cientos de competiciones CTF.",
+    "title": "CTF Archive",
+    "description": "Cientos de competiciones CTF en un solo sitio.",
     "button": "Explorar"
   },
   "Metadata": {
-    "title": "CTF Archives Explorer",
-    "description": "Navega, vota y valora retos de cientos de competiciones Capture The Flag, archivadas por sajjadium/ctf-archives."
+    "title": "CTF Archive",
+    "description": "Cientos de competiciones Capture The Flag en un solo sitio. Vota, valora la dificultad y sube los tuyos."
   },
   "Nav": {
-    "brand": "CTF Archives",
+    "brand": "CTF Archive",
+    "submit": "Subir",
     "signIn": "Iniciar sesión",
     "signOut": "Cerrar sesión",
     "account": "Cuenta"
+  },
+  "Submit": {
+    "eyebrow": "subir",
+    "title": "Subir un CTF",
+    "subtitle": "Añade una competición que jugaste. Aparecerá para todos en cuanto la envíes.",
+    "name": "Nombre",
+    "year": "Año",
+    "url": "Enlace (opcional)",
+    "categories": "Categorías (opcional)",
+    "notes": "Notas (opcional)",
+    "notesPlaceholder": "Cualquier cosa que merezca saberse de este CTF",
+    "cta": "Subir CTF",
+    "success": "¡Subido, gracias!",
+    "error": "No se pudo subir. Inténtalo de nuevo.",
+    "required": "Obligatorio",
+    "yearError": "Introduce un año de cuatro dígitos",
+    "urlError": "Introduce una URL válida",
+    "needAccount": "Necesitas una cuenta para subir un CTF.",
+    "signIn": "Iniciar sesión"
   }
 }

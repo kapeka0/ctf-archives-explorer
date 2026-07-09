@@ -1,5 +1,6 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
+import CommunitySubmissions from "@/components/ctf/CommunitySubmissions";
 import CtfExplorer from "@/components/ctf/CtfExplorer";
 import MaxWidthWrapper from "@/components/ui/MaxWidthWrapper";
 import { getCtfIndex } from "@/lib/ctf/data";
@@ -23,7 +24,9 @@ export default async function Home({ params }: Props) {
   return (
     <MaxWidthWrapper className="py-14 sm:py-20">
       <section className="max-w-2xl">
-        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">{t("eyebrow")}</p>
+        <p className="font-mono text-[11px] text-muted-foreground">
+          <span className="text-brand">$</span> {t("eyebrow")}
+        </p>
         <h1 className="mt-4 text-pretty text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl">
           {t("titleLead")}{" "}
           <span className="font-mono font-medium">
@@ -48,6 +51,7 @@ export default async function Home({ params }: Props) {
 
       <hr className="my-12 border-border" />
 
+      <CommunitySubmissions />
       <CtfExplorer ctfs={index.ctfs} />
     </MaxWidthWrapper>
   );

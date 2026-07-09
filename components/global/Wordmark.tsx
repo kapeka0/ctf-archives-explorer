@@ -1,15 +1,12 @@
+import Logo from "@/components/global/Logo";
 import { cn } from "@/lib/utils";
 
-/**
- * The site signature: identity rendered in the CTF flag format, `ctf{archives}`.
- * The braces and inner token carry the accent; everything else stays ink.
- */
+/** The flag mark plus the project name. */
 function Wordmark({ className }: { className?: string }) {
   return (
-    <span className={cn("font-mono text-sm font-medium tracking-tight", className)}>
-      ctf<span className="text-brand">{"{"}</span>
-      archives
-      <span className="text-brand">{"}"}</span>
+    <span className={cn("flex items-center gap-2", className)}>
+      <Logo className="size-5 rounded-[6px]" />
+      <span className="text-sm font-semibold tracking-tight">CTF Archive</span>
     </span>
   );
 }

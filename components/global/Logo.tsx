@@ -1,0 +1,42 @@
+import { cn } from "@/lib/utils";
+
+/**
+ * The flag mark. Authored as a black tile with a white flag glyph; in dark
+ * mode we invert it to a light tile so it reads on the near-black canvas.
+ */
+function Logo({ className }: { className?: string }) {
+  return (
+    <svg
+      aria-hidden
+      className={cn("shrink-0 dark:invert", className)}
+      fill="none"
+      viewBox="0 0 31 30"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect width="31" height="30" rx="8" fill="black" />
+      <path
+        d="M10.8541 22.5749C10.7599 19.3955 10.4299 15.1719 10.0035 11.1382C9.95162 8.57111 10.1406 6.97861 10.1406 7.00022C10.1406 7.29809 10.1406 8.17847 10.1406 9.08553"
+        stroke="white"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M8 10.1429C10.2303 9.39929 13.1452 8.83033 16.4257 8.54866C17.9376 8.41884 19.1497 8.45289 19.8335 8.72984C21.5974 9.44427 20.9049 11.2932 21.3719 14.3121C21.4857 15.0472 21.4676 15.4718 20.4542 15.666C17.4141 15.8138 13.9785 15.4406 11.7974 14.9244C10.9638 14.7336 10.6848 14.6871 9.99647 14.5598"
+        stroke="white"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M12.5366 12.2053C12.9126 11.5634 13.3312 10.8582 13.5364 10.8522C13.6864 10.8478 13.6062 11.3936 13.7188 11.5589C13.9135 11.8448 14.7067 11.1689 15.4098 10.5359C15.6971 10.2773 15.8338 10.1355 15.9055 10.7316C15.9771 11.3276 15.9771 12.6632 16.0697 13.2589C16.1623 13.8545 16.3475 13.6697 16.5359 13.4352C16.7243 13.2006 16.9102 12.9219 17.0289 12.8911C17.2759 12.8271 17.241 13.5482 17.2643 13.7863C17.2861 14.0084 17.6147 12.8829 17.897 12.2903C18.1648 11.7283 17.4309 13.5506 17.3132 13.7664C17.4747 13.0108 17.8915 12.4044 18.341 11.9477C18.5626 11.72 18.7712 11.5005 18.8726 11.6222"
+        stroke="white"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+export default Logo;

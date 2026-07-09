@@ -1,12 +1,10 @@
-"use client";
+import Logo from "@/components/global/Logo";
 
-import { ThreeDots } from "react-loader-spinner";
-
+/** Full-screen loader with the flag mark pulsing in the middle. */
 function ScreenLoader() {
-  console.log("ScreenLoader");
   return (
-    <div className="h-screen w-screen flex justify-center items-center z-1000 ">
-      <ThreeDots color="#0bcdfe" visible width="60" />
+    <div className="flex min-h-screen w-full items-center justify-center">
+      <Logo className="size-10 animate-pulse rounded-[10px]" />
     </div>
   );
 }

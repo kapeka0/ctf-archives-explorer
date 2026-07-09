@@ -1,5 +1,5 @@
-const Loading = () => {
-  return <div>Loading...</div>;
-};
+import ScreenLoader from "@/components/global/ScreenLoader";
+
+const Loading = () => <ScreenLoader />;
 
 export default Loading;
