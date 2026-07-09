@@ -18,6 +18,7 @@ function SignInForm() {
   const router = useRouter();
   const { signIn } = useAuthActions();
   const tAuth = useTranslations("Auth");
+  const tError = useTranslations("Auth.errors");
   const [showPassword, setshowPassword] = useState(false);
   const [isPending, setIsPending] = useState(false);
 
@@ -41,9 +42,14 @@ function SignInForm() {
       });
       toast.success(tAuth("signInSuccess"));
       router.push("/");
-    } catch {
-      form.setError("password", { type: "manual", message: tAuth("loginError") });
-      toast.error(tAuth("loginError"));
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "";
+      if (message.includes("Could not find") || message.includes("Invalid") || message.includes("password")) {
+        form.setError("password", { type: "manual", message: tAuth("loginError") });
+        toast.error(tAuth("loginError"));
+      } else {
+        toast.error(tError("unexpected"));
+      }
     } finally {
       setIsPending(false);
     }

@@ -12,6 +12,8 @@ import { redirect } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 
+import { Toaster as HotToaster } from "react-hot-toast";
+
 import { ConvexClientProvider } from "@/components/providers/ConvexClientProvider";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { Toaster } from "@/components/ui/toaster";
@@ -62,6 +64,18 @@ export default async function RootLayout({
                 <div className="grow flex-1">{children}</div>
               </main>
               <Toaster />
+              <HotToaster
+                position="bottom-center"
+                toastOptions={{
+                  duration: 3000,
+                  style: {
+                    background: "var(--color-card)",
+                    color: "var(--color-card-foreground)",
+                    border: "1px solid var(--color-border)",
+                    fontSize: "14px",
+                  },
+                }}
+              />
             </ThemeProvider>
           </NextIntlClientProvider>
         </ConvexClientProvider>
