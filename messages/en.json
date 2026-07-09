@@ -154,6 +154,9 @@
   "Saved": {
     "title": "Saved challenges",
     "empty": "No saved challenges yet. Browse CTFs and bookmark challenges to see them here.",
-    "browseCta": "Browse CTFs"
+    "browseCta": "Browse CTFs",
+    "remove": "Remove from saved",
+    "removed": "Challenge removed",
+    "removeError": "Could not remove. Try again."
   }
 }

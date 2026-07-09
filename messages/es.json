@@ -154,6 +154,9 @@
   "Saved": {
     "title": "Retos guardados",
     "empty": "Aún no has guardado ningún reto. Explora CTFs y marca retos para verlos aquí.",
-    "browseCta": "Explorar CTFs"
+    "browseCta": "Explorar CTFs",
+    "remove": "Eliminar de guardados",
+    "removed": "Reto eliminado",
+    "removeError": "No se pudo eliminar. Inténtalo de nuevo."
   }
 }

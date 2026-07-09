@@ -154,6 +154,9 @@
   "Saved": {
     "title": "已收藏的挑战",
     "empty": "还没有收藏任何挑战。浏览 CTF 并收藏挑战后就会显示在这里。",
-    "browseCta": "浏览 CTF"
+    "browseCta": "浏览 CTF",
+    "remove": "取消收藏",
+    "removed": "已取消收藏",
+    "removeError": "取消收藏失败，请重试。"
   }
 }

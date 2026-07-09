@@ -1,8 +1,9 @@
 "use client";
 
-import { useQuery } from "convex/react";
-import { ArrowUpRight, Bookmark } from "lucide-react";
+import { useMutation, useQuery } from "convex/react";
+import { ArrowUpRight, Bookmark, X } from "lucide-react";
 import { useTranslations } from "next-intl";
+import toast from "react-hot-toast";
 
 import { Button } from "@/components/ui/button";
 import ExternalLink from "@/components/ui/external-link";
@@ -14,6 +15,7 @@ import { githubTreeUrl } from "@/lib/ctf/types";
 function SavedPage() {
   const t = useTranslations("Saved");
   const favorites = useQuery(api.favorites.all);
+  const toggle = useMutation(api.favorites.toggle);
 
   const grouped = new Map<string, { ctfSlug: string; key: string }[]>();
   for (const f of favorites ?? []) {
@@ -21,6 +23,15 @@ function SavedPage() {
     if (list) list.push(f);
     else grouped.set(f.ctfSlug, [f]);
   }
+
+  const handleRemove = async (ctfSlug: string, key: string) => {
+    try {
+      await toggle({ ctfSlug, key });
+      toast.success(t("removed"));
+    } catch {
+      toast.error(t("removeError"));
+    }
+  };
 
   return (
     <MaxWidthWrapper className="py-10">
@@ -53,19 +64,36 @@ function SavedPage() {
                 {items.map((item) => {
                   const name = item.key.split("/").pop() ?? item.key;
                   return (
-                    <ExternalLink
+                    <div
                       className="group flex items-center gap-2 rounded-md border border-border bg-card px-3 py-2 transition-colors hover:border-brand/50"
-                      href={githubTreeUrl(item.key)}
                       key={item.key}
-                      rel="noopener noreferrer"
-                      target="_blank"
                     >
                       <Bookmark className="size-3.5 shrink-0 fill-current text-brand" />
-                      <span className="truncate font-mono text-sm text-foreground/90 group-hover:text-brand">
+                      <ExternalLink
+                        className="truncate font-mono text-sm text-foreground/90 transition-colors hover:text-brand"
+                        href={githubTreeUrl(item.key)}
+                        rel="noopener noreferrer"
+                        target="_blank"
+                      >
                         {name}
-                      </span>
-                      <ArrowUpRight className="ml-auto size-3 shrink-0 text-muted-foreground/40 transition-colors group-hover:text-brand" />
-                    </ExternalLink>
+                      </ExternalLink>
+                      <ExternalLink
+                        className="ml-auto text-muted-foreground/40 transition-colors hover:text-brand"
+                        href={githubTreeUrl(item.key)}
+                        rel="noopener noreferrer"
+                        target="_blank"
+                      >
+                        <ArrowUpRight className="size-3" />
+                      </ExternalLink>
+                      <button
+                        className="shrink-0 rounded p-0.5 text-muted-foreground/40 transition-colors hover:bg-destructive/10 hover:text-destructive"
+                        onClick={() => handleRemove(item.ctfSlug, item.key)}
+                        title={t("remove")}
+                        type="button"
+                      >
+                        <X className="size-3.5" />
+                      </button>
+                    </div>
                   );
                 })}
               </div>

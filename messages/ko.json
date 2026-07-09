@@ -154,6 +154,9 @@
   "Saved": {
     "title": "저장한 문제",
     "empty": "아직 저장한 문제가 없습니다. CTF를 둘러보고 문제를 북마크하면 여기에 표시됩니다.",
-    "browseCta": "CTF 둘러보기"
+    "browseCta": "CTF 둘러보기",
+    "remove": "저장 목록에서 제거",
+    "removed": "문제가 제거되었습니다",
+    "removeError": "제거에 실패했습니다. 다시 시도해 주세요."
   }
 }
