@@ -27,33 +27,33 @@ export default async function Home({ params }: Props) {
   return (
     <MaxWidthWrapper className="py-14 sm:py-20">
       <section className="mx-auto max-w-2xl text-center">
-        <h1 className="text-pretty text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl">
+        <h1 className="text-pretty text-5xl font-semibold leading-[1.05] tracking-tight sm:text-6xl">
           {t("titleLead")}{" "}
           <span className="font-mono font-medium">
             <span className="text-brand">{"{"}</span>
-            {t("titleFlag")}
+            {t("titleFlag")}s
             <span className="text-brand">{"}"}</span>
           </span>
         </h1>
-        <p className="mx-auto mt-5 max-w-xl text-pretty leading-relaxed text-muted-foreground">{t("subtitle")}</p>
+        <p className="mx-auto mt-5 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground">{t("subtitle")}</p>
 
         <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
           <Link href="/submit">
-            <Button className="gap-1.5 rounded-full" size="sm">
+            <Button className="gap-1.5 rounded-full text-sm" size="sm">
               <Plus className="size-4" />
               {t("submitCta")}
             </Button>
           </Link>
           <ExternalLink
-            className="flex items-center gap-1 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground"
+            className="flex items-center gap-1 font-mono text-sm text-muted-foreground transition-colors hover:text-foreground"
             href="#explore"
           >
             {t("filterArchive")}
-            <ArrowUpRight className="size-3" />
+            <ArrowUpRight className="size-3.5" />
           </ExternalLink>
         </div>
 
-        <dl className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 font-mono text-sm">
+        <dl className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 font-mono text-base">
           {ledger.map((stat, i) => (
             <div className="flex items-baseline gap-2" key={stat.label}>
               {i > 0 ? <span className="mr-4 hidden h-4 w-px bg-border sm:inline-block" /> : null}

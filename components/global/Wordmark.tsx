@@ -6,7 +6,7 @@ function Wordmark({ className }: { className?: string }) {
   return (
     <span className={cn("flex items-center gap-2", className)}>
       <Logo className="size-5 rounded-[6px]" />
-      <span className="text-sm font-semibold tracking-tight">CTF Archive</span>
+      <span className="text-base font-semibold tracking-tight">CTF Archives</span>
     </span>
   );
 }

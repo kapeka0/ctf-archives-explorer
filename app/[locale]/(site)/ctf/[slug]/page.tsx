@@ -22,7 +22,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
   const detail = await getCtfDetail(slug);
-  return { title: detail ? `${detail.name} · CTF Archive` : "CTF Archive" };
+  return { title: detail ? `${detail.name} · CTF Archives` : "CTF Archives" };
 }
 
 export default async function CtfPage({ params }: Props) {
@@ -37,7 +37,7 @@ export default async function CtfPage({ params }: Props) {
   return (
     <MaxWidthWrapper className="py-10">
       <Link
-        className="inline-flex items-center gap-1.5 font-mono text-[11px] tracking-wider text-muted-foreground transition-colors hover:text-foreground"
+        className="inline-flex items-center gap-1.5 font-mono text-xs tracking-wider text-muted-foreground transition-colors hover:text-foreground"
         href="/"
       >
         <ArrowLeft className="size-3.5" />
@@ -46,7 +46,7 @@ export default async function CtfPage({ params }: Props) {
 
       <header className="mt-6 border-b border-border pb-8">
         <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">{detail.name}</h1>
-        <p className="mt-2 font-mono text-[13px] text-muted-foreground">
+        <p className="mt-2 font-mono text-sm text-muted-foreground">
           {detail.years.length} {t("editions")}
           <span className="mx-2 text-border">·</span>
           {totalChallenges} {t("challenges")}
@@ -54,7 +54,7 @@ export default async function CtfPage({ params }: Props) {
           {detail.years[detail.years.length - 1].year}–{detail.years[0].year}
         </p>
 
-        <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-[13px]">
+        <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-sm">
           <ExternalLink
             className="flex items-center gap-1.5 text-muted-foreground transition-colors hover:text-brand"
             href={githubTreeUrl(detail.name)}

@@ -84,13 +84,15 @@
     "system": "System",
     "lang": "Language",
     "es": "Spanish",
-    "en": "English"
+    "en": "English",
+    "zh": "Chinese",
+    "ko": "Korean"
   },
   "Home": {
     "eyebrow": "ctf --list",
     "titleLead": "Every CTF, one",
     "titleFlag": "archive",
-    "title": "CTF Archive",
+    "title": "CTF Archives",
     "subtitle": "Hundreds of competitions in one place. Vote the classics up, rate their difficulty, and submit the ones you played.",
     "searchPlaceholder": "search competitions",
     "community": "Submitted by the community",
@@ -101,28 +103,31 @@
     "sortName": "Name",
     "sortVotes": "Top voted",
     "sortChallenges": "Most challenges",
+    "sortDifficulty": "Difficulty",
     "noResults": "No CTFs match your search.",
     "showing": "Showing {shown} of {total} CTFs",
     "filterArchive": "Archive",
     "filterCommunity": "Community",
+    "filterCategory": "All categories",
     "submitCta": "Submit a CTF",
     "communityEmpty": "No community submissions yet. Be the first."
   },
   "LandingPage": {
-    "title": "CTF Archive",
+    "title": "CTF Archives",
     "description": "Hundreds of CTF competitions in one place.",
     "button": "Explore"
   },
   "Metadata": {
-    "title": "CTF Archive",
+    "title": "CTF Archives",
     "description": "Hundreds of Capture The Flag competitions in one place. Vote, rate difficulty, and submit your own."
   },
   "Nav": {
-    "brand": "CTF Archive",
+    "brand": "CTF Archives",
     "submit": "Submit",
     "signIn": "Sign in",
     "signOut": "Sign out",
-    "account": "Account"
+    "account": "Account",
+    "savedChallenges": "Saved challenges"
   },
   "Submit": {
     "eyebrow": "submit",
@@ -141,5 +146,10 @@
     "yearError": "Enter a four-digit year",
     "urlError": "Enter a valid URL",
     "signIn": "Sign in"
+  },
+  "Saved": {
+    "title": "Saved challenges",
+    "empty": "No saved challenges yet. Browse CTFs and bookmark challenges to see them here.",
+    "browseCta": "Browse CTFs"
   }
 }

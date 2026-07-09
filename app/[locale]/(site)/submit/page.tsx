@@ -10,7 +10,7 @@ type Props = {
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Submit" });
-  return { title: `${t("title")} · CTF Archive` };
+  return { title: `${t("title")} · CTF Archives` };
 }
 
 export default async function SubmitPage({ params }: Props) {
@@ -20,7 +20,7 @@ export default async function SubmitPage({ params }: Props) {
 
   return (
     <MaxWidthWrapper className="max-w-xl py-14">
-      <p className="font-mono text-[11px] tracking-wider text-muted-foreground">
+      <p className="font-mono text-xs tracking-wider text-muted-foreground">
         {"// "}
         {t("eyebrow")}
       </p>

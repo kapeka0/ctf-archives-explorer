@@ -48,7 +48,7 @@ function ChallengeRow({
         rel="noopener noreferrer"
         target="_blank"
       >
-        <span className="truncate font-mono text-[13px] text-foreground/90 group-hover:text-brand">
+        <span className="truncate font-mono text-sm text-foreground/90 group-hover:text-brand">
           {challenge.name}
         </span>
         <ArrowUpRight className="size-3 shrink-0 text-muted-foreground/40 transition-colors group-hover:text-brand" />
@@ -165,7 +165,7 @@ function CtfBoard({ slug, years }: { slug: string; years: CtfYear[] }) {
   return (
     <>
       <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 rounded-lg border border-border bg-card px-4 py-3">
-        <span className="font-mono text-[11px] tracking-wider text-muted-foreground">{t("average")}</span>
+        <span className="font-mono text-xs tracking-wider text-muted-foreground">{t("average")}</span>
         <span className="flex items-center gap-2">
           <DifficultyMeter value={summary?.difficulty ?? 0} />
           <span className="font-mono text-sm">
@@ -176,7 +176,7 @@ function CtfBoard({ slug, years }: { slug: string; years: CtfYear[] }) {
         <span className="font-mono text-sm text-muted-foreground">
           {summary ? `${summary.up - summary.down >= 0 ? "+" : ""}${summary.up - summary.down} ${t("net")}` : ""}
         </span>
-        <span className="font-mono text-[11px] text-muted-foreground">{t("rateHint")}</span>
+        <span className="font-mono text-xs text-muted-foreground">{t("rateHint")}</span>
       </div>
 
       <div className="mt-10 space-y-12">
@@ -191,12 +191,12 @@ function CtfBoard({ slug, years }: { slug: string; years: CtfYear[] }) {
             <section className="scroll-mt-24" id={`y-${year.year}`} key={year.year}>
               <div className="mb-5 flex items-baseline gap-3">
                 <h2 className="font-mono text-xl font-semibold tabular-nums tracking-tight">{year.year}</h2>
-                <span className="font-mono text-[11px] text-muted-foreground">
+                <span className="font-mono text-xs text-muted-foreground">
                   {year.challenges.length} {t("challenges")}
                 </span>
                 {year.ctftime ? (
                   <ExternalLink
-                    className="ml-auto flex items-center gap-1 font-mono text-[11px] text-muted-foreground transition-colors hover:text-brand"
+                    className="ml-auto flex items-center gap-1 font-mono text-xs text-muted-foreground transition-colors hover:text-brand"
                     href={year.ctftime}
                     rel="noopener noreferrer"
                     target="_blank"

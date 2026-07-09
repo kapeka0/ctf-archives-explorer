@@ -93,7 +93,7 @@ function SubmitForm() {
           name="name"
           render={({ field }) => (
             <FormItem className="space-y-1.5">
-              <FormLabel className="font-mono text-[11px] tracking-wider text-muted-foreground">
+              <FormLabel className="font-mono text-xs tracking-wider text-muted-foreground">
                 {t("name")}
               </FormLabel>
               <FormControl>
@@ -109,7 +109,7 @@ function SubmitForm() {
           name="year"
           render={({ field }) => (
             <FormItem className="space-y-1.5">
-              <FormLabel className="font-mono text-[11px] tracking-wider text-muted-foreground">
+              <FormLabel className="font-mono text-xs tracking-wider text-muted-foreground">
                 {t("year")}
               </FormLabel>
               <FormControl>
@@ -133,7 +133,7 @@ function SubmitForm() {
           name="url"
           render={({ field }) => (
             <FormItem className="space-y-1.5">
-              <FormLabel className="font-mono text-[11px] tracking-wider text-muted-foreground">
+              <FormLabel className="font-mono text-xs tracking-wider text-muted-foreground">
                 {t("url")}
               </FormLabel>
               <FormControl>
@@ -149,14 +149,14 @@ function SubmitForm() {
           name="categories"
           render={() => (
             <FormItem className="space-y-1.5">
-              <FormLabel className="font-mono text-[11px] tracking-wider text-muted-foreground">
+              <FormLabel className="font-mono text-xs tracking-wider text-muted-foreground">
                 {t("categories")}
               </FormLabel>
               <div className="flex flex-wrap gap-1.5">
                 {CTF_CATEGORIES.map((cat) => (
                   <button
                     className={cn(
-                      "rounded-full border px-2.5 py-1 font-mono text-[11px] transition-colors",
+                      "rounded-full border px-3 py-1.5 font-mono text-xs transition-colors",
                       selectedCategories.includes(cat)
                         ? "border-brand bg-brand/10 text-brand"
                         : "border-border text-muted-foreground hover:border-brand/50"
@@ -180,7 +180,7 @@ function SubmitForm() {
           name="notes"
           render={({ field }) => (
             <FormItem className="space-y-1.5">
-              <FormLabel className="font-mono text-[11px] tracking-wider text-muted-foreground">
+              <FormLabel className="font-mono text-xs tracking-wider text-muted-foreground">
                 {t("notes")}
               </FormLabel>
               <FormControl>

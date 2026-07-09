@@ -48,7 +48,7 @@
       "passwordSpecial": "La contraseña debe contener al menos un carácter especial",
       "required": "Este campo es requerido",
       "passwordRestriction": "La contraseña debe contener al menos una mayúscula, una minúscula y un número",
-      "usernameLength": "El nombre  debe tener entre 3 y 20 caracteres.",
+      "usernameLength": "El nombre debe tener entre 3 y 20 caracteres.",
       "usernameChars": "Usa solo letras, números y guiones bajos"
     }
   },
@@ -84,13 +84,15 @@
     "system": "Sistema",
     "lang": "Idioma",
     "es": "Español",
-    "en": "Inglés"
+    "en": "Inglés",
+    "zh": "Chino",
+    "ko": "Coreano"
   },
   "Home": {
     "eyebrow": "ctf --list",
     "titleLead": "Cada CTF, un",
     "titleFlag": "archivo",
-    "title": "CTF Archive",
+    "title": "CTF Archives",
     "subtitle": "Cientos de competiciones en un solo sitio. Vota los clásicos, valora su dificultad y sube los que jugaste.",
     "searchPlaceholder": "buscar competiciones",
     "community": "Subidos por la comunidad",
@@ -101,28 +103,31 @@
     "sortName": "Nombre",
     "sortVotes": "Más votados",
     "sortChallenges": "Más retos",
+    "sortDifficulty": "Dificultad",
     "noResults": "Ningún CTF coincide con tu búsqueda.",
     "showing": "Mostrando {shown} de {total} CTFs",
     "filterArchive": "Archivo",
     "filterCommunity": "Comunidad",
+    "filterCategory": "Todas las categorías",
     "submitCta": "Subir un CTF",
     "communityEmpty": "Aún no hay CTFs de la comunidad. Sé el primero."
   },
   "LandingPage": {
-    "title": "CTF Archive",
+    "title": "CTF Archives",
     "description": "Cientos de competiciones CTF en un solo sitio.",
     "button": "Explorar"
   },
   "Metadata": {
-    "title": "CTF Archive",
+    "title": "CTF Archives",
     "description": "Cientos de competiciones Capture The Flag en un solo sitio. Vota, valora la dificultad y sube los tuyos."
   },
   "Nav": {
-    "brand": "CTF Archive",
+    "brand": "CTF Archives",
     "submit": "Subir",
     "signIn": "Iniciar sesión",
     "signOut": "Cerrar sesión",
-    "account": "Cuenta"
+    "account": "Cuenta",
+    "savedChallenges": "Retos guardados"
   },
   "Submit": {
     "eyebrow": "subir",
@@ -141,5 +146,10 @@
     "yearError": "Introduce un año de cuatro dígitos",
     "urlError": "Introduce una URL válida",
     "signIn": "Iniciar sesión"
+  },
+  "Saved": {
+    "title": "Retos guardados",
+    "empty": "Aún no has guardado ningún reto. Explora CTFs y marca retos para verlos aquí.",
+    "browseCta": "Explorar CTFs"
   }
 }

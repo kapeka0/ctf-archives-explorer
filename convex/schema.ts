@@ -66,9 +66,21 @@ export default defineSchema({
     .index("by_user_ctf", ["userId", "ctfSlug"])
     .index("by_user_key", ["userId", "key"]),
 
-  // Cached cat avatar URL per user.
-  userProfiles: defineTable({
+  // Votes on community submissions: +1 (upvote) or -1 (downvote).
+  submissionVotes: defineTable({
     userId: v.id("users"),
-    avatarUrl: v.string(),
-  }).index("by_user", ["userId"]),
+    submissionId: v.id("submissions"),
+    value: v.union(v.literal(1), v.literal(-1)),
+  })
+    .index("by_user_submission", ["userId", "submissionId"])
+    .index("by_submission", ["submissionId"]),
+
+  // Difficulty ratings on community submissions (1-5).
+  submissionRatings: defineTable({
+    userId: v.id("users"),
+    submissionId: v.id("submissions"),
+    difficulty: v.number(),
+  })
+    .index("by_user_submission", ["userId", "submissionId"])
+    .index("by_submission", ["submissionId"]),
 });

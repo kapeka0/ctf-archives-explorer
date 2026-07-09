@@ -41,6 +41,7 @@
     "clsx": "2.1.1",
     "convex": "^1.42.0",
     "dotenv": "17.4.2",
+    "facehash": "^0.1.0",
     "framer-motion": "^12.42.0",
     "geist": "^1.7.2",
     "lottie-react": "^2.4.1",

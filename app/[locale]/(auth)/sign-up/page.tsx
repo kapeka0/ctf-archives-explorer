@@ -9,7 +9,7 @@ function SignUpPage() {
   return (
     <div className="w-full max-w-sm">
       <div className="space-y-1.5">
-        <p className="font-mono text-[11px] tracking-wider text-muted-foreground">
+        <p className="font-mono text-xs tracking-wider text-muted-foreground">
           {"// "}
           {tAuth("signUp")}
         </p>
@@ -21,7 +21,7 @@ function SignUpPage() {
         <SignUpForm />
       </div>
 
-      <p className="mt-6 font-mono text-[11px] text-muted-foreground">
+      <p className="mt-6 font-mono text-xs text-muted-foreground">
         {tAuth("alreadyAccount")}{" "}
         <Link className="text-brand hover:underline" href="/sign-in">
           {tAuth("signIn")}

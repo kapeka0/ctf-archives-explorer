@@ -13,7 +13,7 @@ function SiteLayout({ children }: Props) {
       <SiteNavbar />
       <div className="flex-1 pt-16">{children}</div>
       <footer className="mt-10 border-t border-border py-6">
-        <MaxWidthWrapper className="flex flex-col items-center justify-between gap-3 font-mono text-[11px] text-muted-foreground sm:flex-row">
+        <MaxWidthWrapper className="flex flex-col items-center justify-between gap-3 font-mono text-xs text-muted-foreground sm:flex-row">
           <Wordmark className="[&>span:last-child]:font-normal [&>span:last-child]:text-muted-foreground" />
           <ExternalLink
             className="transition-colors hover:text-brand"

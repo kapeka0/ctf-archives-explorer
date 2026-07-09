@@ -15,6 +15,13 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { usePathname, useRouter } from "@/i18n/routing";
 
+const LANGS = [
+  { code: "en", flag: "/images/flags/united-kingdom.svg" },
+  { code: "es", flag: "/images/flags/spain.svg" },
+  { code: "zh", flag: "/images/flags/china.svg" },
+  { code: "ko", flag: "/images/flags/japan.svg" },
+] as const;
+
 export default function LangToggle() {
   const t = useTranslations("Global");
   const router = useRouter();
@@ -40,24 +47,18 @@ export default function LangToggle() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem
-          onClick={() => changeLanguage("es")}
-          className="cursor-pointer flex items-center gap-2 flex-nowrap"
-        >
-          <Avatar className="size-6">
-            <AvatarImage src="/images/flags/spain.svg" className="" />
-          </Avatar>
-          {t("es")}
-        </DropdownMenuItem>
-        <DropdownMenuItem
-          onClick={() => changeLanguage("en")}
-          className="cursor-pointer flex items-center gap-2 flex-nowrap"
-        >
-          <Avatar className="size-6">
-            <AvatarImage src="/images/flags/united-kingdom.svg" />
-          </Avatar>
-          {t("en")}
-        </DropdownMenuItem>
+        {LANGS.map(({ code, flag }) => (
+          <DropdownMenuItem
+            key={code}
+            onClick={() => changeLanguage(code)}
+            className="cursor-pointer flex items-center gap-2 flex-nowrap"
+          >
+            <Avatar className="size-6">
+              <AvatarImage src={flag} />
+            </Avatar>
+            {t(code)}
+          </DropdownMenuItem>
+        ))}
       </DropdownMenuContent>
     </DropdownMenu>
   );

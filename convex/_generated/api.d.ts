@@ -9,7 +9,6 @@
  */
 
 import type * as auth from "../auth.js";
-import type * as avatars from "../avatars.js";
 import type * as ctfs from "../ctfs.js";
 import type * as favorites from "../favorites.js";
 import type * as http from "../http.js";
@@ -24,7 +23,6 @@ import type {
 
 declare const fullApi: ApiFromModules<{
   auth: typeof auth;
-  avatars: typeof avatars;
   ctfs: typeof ctfs;
   favorites: typeof favorites;
   http: typeof http;
